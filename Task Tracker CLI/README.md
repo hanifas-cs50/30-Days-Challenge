@@ -137,4 +137,7 @@ Feel free to fork the repository and submit pull requests. Issues and feedback a
 
 ## Challenge
 
-Challenge Link: [Task Tracker CLI](https://roadmap.sh/projects/task-tracker) https://roadmap.sh/projects/task-tracker
+Challenge Link:
+[Task Tracker CLI](https://roadmap.sh/projects/task-tracker)
+
+https://roadmap.sh/projects/task-tracker
