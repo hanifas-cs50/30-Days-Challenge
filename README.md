@@ -9,5 +9,5 @@ Each folder contains the codes.
 - Focus on learning and consistency, not perfection
 
 ## Progress
-- Day 1: Task Tracker CLI (Node.js)
+- Day 1: Task Tracker CLI (Node.js) || https://roadmap.sh/projects/task-tracker
 - Day 2: ...
