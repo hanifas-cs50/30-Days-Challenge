@@ -9,8 +9,13 @@ const [a, b, command, ...args] = process.argv;
 
 // load tasks
 function load_tasks() {
-    const data = fs.readFileSync(json, "utf8");
-    return JSON.parse(data);
+    try {
+        const data = fs.readFileSync(json, "utf8");
+        return JSON.parse(data);
+    } catch (error) {
+        fs.writeFileSync(json, JSON.stringify([]))
+        return [];
+    }
 }
 
 // tasks list
@@ -33,8 +38,14 @@ function add_task(title) {
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
     }
+
+    if (!title.trim()) {
+        console.log("To do cannot be added if it's empty")
+        return;
+    }
+
     tasks.push(task);
-    fs.writeFileSync(json, JSON.stringify(tasks, null));
+    fs.writeFileSync(json, JSON.stringify(tasks));
     console.log(`task added successfully, id: ${task.id}`)
 }
 
@@ -43,9 +54,14 @@ function update_task(id, title) {
     const tasks = load_tasks();
     const task = tasks.find(t => t.id == id);
 
+    if (!task) {
+        console.log(`task with id: ${id} not found`)
+        return;
+    }
+
     task["title"] = title;
     task["updatedAt"] = new Date().toISOString();
-    fs.writeFileSync(json, JSON.stringify(tasks, null));
+    fs.writeFileSync(json, JSON.stringify(tasks));
     console.log(`task updated successfully, id: ${task.id}`)
 }
 
@@ -63,9 +79,14 @@ function update_task_status(id, status) {
     const tasks = load_tasks();
     const task = tasks.find(t => t.id == id);
 
+    if (!task) {
+        console.log(`task with id: ${id} not found`)
+        return;
+    }
+
     task["status"] = status;
     task["updatedAt"] = new Date().toISOString();
-    fs.writeFileSync(json, JSON.stringify(tasks, null));
+    fs.writeFileSync(json, JSON.stringify(tasks));
     console.log(`task updated successfully, id: ${task.id}`)
 }
 
@@ -75,7 +96,7 @@ if (command == "list") {
 } else if (command == "add") {
     add_task(args.join(" "));
 } else if (command == "update") {
-    update_task(args.splice(0, 1)[0], args.join(" "));
+    update_task(args[0], args.slice(1).join(" "));
 } else if (command == "delete") {
     delete_task(args[0]);
 } else if (command == "mark-in-progress") {
