@@ -10,4 +10,5 @@ Each folder contains the codes.
 
 ## Progress
 - Day 1: Task Tracker CLI (Node.js) || https://roadmap.sh/projects/task-tracker
-- Day 2: ...
+- Day 2: GitHub User Activity CLI (Node.js) Progress || https://roadmap.sh/projects/github-user-activity
+- Day 3: ...
